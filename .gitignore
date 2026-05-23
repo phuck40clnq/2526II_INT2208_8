@@ -1,0 +1,7 @@
+# Config
+.vscode
+.DS_Store
+*.code-workspace
+
+# Pycache
+__pycache_
