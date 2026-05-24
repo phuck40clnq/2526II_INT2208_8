@@ -4,4 +4,15 @@
 *.code-workspace
 
 # Pycache
-__pycache_
+__pycache__/
+*.pyc
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Virtual env
+se_venv/
