@@ -1,0 +1,18 @@
+# Config
+.vscode
+.DS_Store
+*.code-workspace
+
+# Pycache
+__pycache__/
+*.pyc
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Virtual env
+se_venv/
