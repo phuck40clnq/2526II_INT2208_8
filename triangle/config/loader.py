@@ -11,5 +11,5 @@ def load_yaml(path: str) -> dict[str, str]:
     with open(path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
     
-def load_test(filename: str) -> dict[str, str]:
-    load_yaml(f"test_cases/{filename}")
+def load_test(filename: str) -> dict:
+    return load_yaml(f"test_cases/{filename}")

@@ -1,0 +1,73 @@
+valid:
+  - id: BV-V-01
+    description: "All sides at minimum boundary (1)"
+    a: 1
+    b: 1
+    c: 1
+
+  - id: BV-V-02
+    description: "All sides at maximum boundary (100)"
+    a: 100
+    b: 100
+    c: 100
+
+  - id: BV-V-03
+    description: "Mixed valid values"
+    a: 3
+    b: 4
+    c: 5
+
+  - id: BV-V-04
+    description: "Near-max boundary"
+    a: 99
+    b: 99
+    c: 100
+
+invalid:
+  - id: BV-I-01
+    description: "Side a just below minimum (BVA: 0)"
+    a: 0
+    b: 50
+    c: 50
+
+  - id: BV-I-02
+    description: "Side a just above maximum (BVA: 101)"
+    a: 101
+    b: 50
+    c: 50
+
+  - id: BV-I-03
+    description: "Side b just below minimum (BVA: 0)"
+    a: 50
+    b: 0
+    c: 50
+
+  - id: BV-I-04
+    description: "Side b just above maximum (BVA: 101)"
+    a: 50
+    b: 101
+    c: 50
+
+  - id: BV-I-05
+    description: "Side c just below minimum (BVA: 0)"
+    a: 50
+    b: 50
+    c: 0
+
+  - id: BV-I-06
+    description: "Side c just above maximum (BVA: 101)"
+    a: 50
+    b: 50
+    c: 101
+
+  - id: EP-I-07
+    description: "Negative side (below range)"
+    a: -1
+    b: 50
+    c: 50
+
+  - id: EP-I-08
+    description: "All sides out of range"
+    a: 0
+    b: 0
+    c: 0

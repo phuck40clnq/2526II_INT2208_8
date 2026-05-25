@@ -1,0 +1,38 @@
+high_risk:
+  - id: R-BVA-01
+    description: "Minimum credit score (boundary of HIGH range: 300)"
+    credit_score: 300
+
+  - id: R-BVA-02
+    description: "Maximum of HIGH range (boundary: 500)"
+    credit_score: 500
+
+  - id: R-EP-03
+    description: "Mid HIGH range"
+    credit_score: 400
+
+medium_risk:
+  - id: R-BVA-04
+    description: "Minimum of MEDIUM range (boundary: 501)"
+    credit_score: 501
+
+  - id: R-BVA-05
+    description: "Maximum of MEDIUM range (boundary: 700)"
+    credit_score: 700
+
+  - id: R-EP-06
+    description: "Mid MEDIUM range"
+    credit_score: 600
+
+low_risk:
+  - id: R-BVA-07
+    description: "Minimum of LOW range (boundary: 701)"
+    credit_score: 701
+
+  - id: R-BVA-08
+    description: "Maximum credit score (boundary: 850)"
+    credit_score: 850
+
+  - id: R-EP-09
+    description: "Mid LOW range"
+    credit_score: 775

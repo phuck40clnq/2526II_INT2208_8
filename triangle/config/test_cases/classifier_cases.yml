@@ -1,0 +1,93 @@
+not_triangle:
+  - id: NT-BVA-01
+    description: "Degenerate: a+b = c (equality boundary)"
+    a: 1
+    b: 1
+    c: 2
+
+  - id: NT-BVA-02
+    description: "a+b < c"
+    a: 1
+    b: 2
+    c: 10
+
+  - id: NT-BVA-03
+    description: "a+c < b (different permutation)"
+    a: 1
+    b: 10
+    c: 2
+
+  - id: NT-BVA-04
+    description: "b+c < a (third permutation)"
+    a: 10
+    b: 1
+    c: 2
+
+equilateral:
+  - id: EQ-BVA-01
+    description: "Minimum equilateral (boundary)"
+    a: 1
+    b: 1
+    c: 1
+
+  - id: EQ-BVA-02
+    description: "Maximum equilateral (boundary)"
+    a: 100
+    b: 100
+    c: 100
+
+  - id: EQ-EP-03
+    description: "Mid-range equilateral"
+    a: 50
+    b: 50
+    c: 50
+
+isosceles:
+  - id: IS-EP-01
+    description: "First two sides equal"
+    a: 5
+    b: 5
+    c: 3
+
+  - id: IS-EP-02
+    description: "Last two sides equal"
+    a: 3
+    b: 5
+    c: 5
+
+  - id: IS-EP-03
+    description: "First and last sides equal"
+    a: 5
+    b: 3
+    c: 5
+
+  - id: IS-BVA-04
+    description: "Near-equilateral boundary (99,99,100)"
+    a: 99
+    b: 99
+    c: 100
+
+  - id: IS-BVA-05
+    description: "Just-valid triangle: 2+2=4 > 3 (close to degenerate)"
+    a: 2
+    b: 2
+    c: 3
+
+scalene:
+  - id: SC-EP-01
+    description: "Classic 3-4-5 right triangle"
+    a: 3
+    b: 4
+    c: 5
+
+  - id: SC-EP-02
+    description: "5-12-13 right triangle"
+    a: 5
+    b: 12
+    c: 13
+
+  - id: SC-BVA-03
+    description: "Boundary scalene (98,99,100)"
+    a: 98
+    b: 99
+    c: 100

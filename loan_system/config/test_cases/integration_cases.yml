@@ -1,0 +1,119 @@
+invalid_input:
+  - id: INT-INV-01
+    description: "Invalid: age below minimum (BVA: 17)"
+    age: 17
+    income: 20.0
+    credit_score: 750
+    employment: "C"
+
+  - id: INT-INV-02
+    description: "Invalid: income above maximum (BVA: 500.1)"
+    age: 30
+    income: 500.1
+    credit_score: 750
+    employment: "C"
+
+  - id: INT-INV-03
+    description: "Invalid: credit score above maximum (BVA: 851)"
+    age: 30
+    income: 20.0
+    credit_score: 851
+    employment: "C"
+
+  - id: INT-INV-04
+    description: "Invalid: bad employment code"
+    age: 30
+    income: 20.0
+    credit_score: 750
+    employment: "X"
+
+approve_cases:
+  - id: INT-APP-01
+    description: "APPROVE: income=15.0 (BVA boundary), LOW risk, Contract"
+    age: 30
+    income: 15.0
+    credit_score: 750
+    employment: "C"
+    expected: APPROVE
+
+  - id: INT-APP-02
+    description: "APPROVE: income=500.0 (max boundary), MEDIUM risk, Contract"
+    age: 30
+    income: 500.0
+    credit_score: 600
+    employment: "C"
+    expected: APPROVE
+
+  - id: INT-APP-03
+    description: "APPROVE: all minimum-boundary valid fields, income>=15"
+    age: 18
+    income: 15.0
+    credit_score: 701
+    employment: "C"
+    expected: APPROVE
+
+manual_review_cases:
+  - id: INT-MR-01
+    description: "MANUAL REVIEW: income=14.9 (BVA just below 15), LOW risk, Contract"
+    age: 30
+    income: 14.9
+    credit_score: 750
+    employment: "C"
+    expected: MANUAL REVIEW
+
+  - id: INT-MR-02
+    description: "MANUAL REVIEW: income>=15, LOW risk, Freelance"
+    age: 30
+    income: 20.0
+    credit_score: 750
+    employment: "F"
+    expected: MANUAL REVIEW
+
+  - id: INT-MR-03
+    description: "MANUAL REVIEW: income>=15, MEDIUM risk, Freelance"
+    age: 30
+    income: 15.0
+    credit_score: 600
+    employment: "F"
+    expected: MANUAL REVIEW
+
+reject_cases:
+  - id: INT-REJ-01
+    description: "REJECT: HIGH risk (credit_score=300, boundary)"
+    age: 30
+    income: 20.0
+    credit_score: 300
+    employment: "C"
+    expected: REJECT
+
+  - id: INT-REJ-02
+    description: "REJECT: HIGH risk (credit_score=500, boundary)"
+    age: 30
+    income: 20.0
+    credit_score: 500
+    employment: "F"
+    expected: REJECT
+
+  - id: INT-REJ-03
+    description: "REJECT: income<15, MEDIUM risk, Contract"
+    age: 30
+    income: 10.0
+    credit_score: 600
+    employment: "C"
+    expected: REJECT
+
+  - id: INT-REJ-04
+    description: "REJECT: income<15, LOW risk, Freelance"
+    age: 30
+    income: 10.0
+    credit_score: 750
+    employment: "F"
+    expected: REJECT
+
+  - id: INT-REJ-05
+    description: "REJECT: income=5.0 (min boundary), MEDIUM risk, Freelance"
+    age: 30
+    income: 5.0
+    credit_score: 600
+    employment: "F"
+    expected: REJECT

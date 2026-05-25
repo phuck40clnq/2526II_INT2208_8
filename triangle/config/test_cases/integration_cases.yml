@@ -1,0 +1,82 @@
+invalid:
+  - id: IT-INV-01
+    description: "INVALID: side a = 0 (BVA below min)"
+    a: 0
+    b: 50
+    c: 50
+
+  - id: IT-INV-02
+    description: "INVALID: side b = 101 (BVA above max)"
+    a: 50
+    b: 101
+    c: 50
+
+  - id: IT-INV-03
+    description: "INVALID: side c = 0 (BVA below min)"
+    a: 50
+    b: 50
+    c: 0
+
+valid:
+  - id: IT-NT-01
+    description: "NOT_TRIANGLE: degenerate (1+1=2)"
+    a: 1
+    b: 1
+    c: 2
+    expected: NOT_TRIANGLE
+
+  - id: IT-NT-02
+    description: "NOT_TRIANGLE: clearly invalid sides"
+    a: 1
+    b: 2
+    c: 10
+    expected: NOT_TRIANGLE
+
+  - id: IT-EQ-01
+    description: "EQUILATERAL: minimum boundary"
+    a: 1
+    b: 1
+    c: 1
+    expected: EQUILATERAL
+
+  - id: IT-EQ-02
+    description: "EQUILATERAL: maximum boundary"
+    a: 100
+    b: 100
+    c: 100
+    expected: EQUILATERAL
+
+  - id: IT-EQ-03
+    description: "EQUILATERAL: mid-range"
+    a: 50
+    b: 50
+    c: 50
+    expected: EQUILATERAL
+
+  - id: IT-IS-01
+    description: "ISOSCELES: two sides equal"
+    a: 5
+    b: 5
+    c: 3
+    expected: ISOSCELES
+
+  - id: IT-IS-02
+    description: "ISOSCELES: near-max boundary"
+    a: 99
+    b: 99
+    c: 100
+    expected: ISOSCELES
+
+  - id: IT-SC-01
+    description: "SCALENE: 3-4-5 right triangle"
+    a: 3
+    b: 4
+    c: 5
+    expected: SCALENE
+
+  - id: IT-SC-02
+    description: "SCALENE: max boundary area"
+    a: 98
+    b: 99
+    c: 100
+    expected: SCALENE

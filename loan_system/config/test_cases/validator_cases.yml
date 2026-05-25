@@ -1,0 +1,116 @@
+valid:
+  - id: V-BVA-01
+    description: "All fields at minimum boundary"
+    age: 18
+    income: 5.0
+    credit_score: 300
+    employment: "C"
+
+  - id: V-BVA-02
+    description: "All fields at maximum boundary"
+    age: 65
+    income: 500.0
+    credit_score: 850
+    employment: "F"
+
+  - id: V-BVA-03
+    description: "Income at split boundary (15.0)"
+    age: 30
+    income: 15.0
+    credit_score: 600
+    employment: "C"
+
+  - id: V-EP-04
+    description: "Mid-range valid values"
+    age: 40
+    income: 100.0
+    credit_score: 600
+    employment: "F"
+
+invalid_age:
+  - id: VA-BVA-01
+    description: "Age just below minimum (BVA: 17)"
+    age: 17
+    income: 10.0
+    credit_score: 400
+    employment: "C"
+
+  - id: VA-BVA-02
+    description: "Age just above maximum (BVA: 66)"
+    age: 66
+    income: 10.0
+    credit_score: 400
+    employment: "C"
+
+  - id: VA-EP-03
+    description: "Age well below range (EP: < 18)"
+    age: 0
+    income: 10.0
+    credit_score: 400
+    employment: "C"
+
+invalid_income:
+  - id: VI-BVA-01
+    description: "Income just below minimum (BVA: 4.9)"
+    age: 30
+    income: 4.9
+    credit_score: 400
+    employment: "C"
+
+  - id: VI-BVA-02
+    description: "Income just above maximum (BVA: 500.1)"
+    age: 30
+    income: 500.1
+    credit_score: 400
+    employment: "C"
+
+  - id: VI-EP-03
+    description: "Income well below range"
+    age: 30
+    income: 0.0
+    credit_score: 400
+    employment: "C"
+
+invalid_credit_score:
+  - id: VC-BVA-01
+    description: "Credit score just below minimum (BVA: 299)"
+    age: 30
+    income: 10.0
+    credit_score: 299
+    employment: "C"
+
+  - id: VC-BVA-02
+    description: "Credit score just above maximum (BVA: 851)"
+    age: 30
+    income: 10.0
+    credit_score: 851
+    employment: "C"
+
+  - id: VC-EP-03
+    description: "Credit score well below range"
+    age: 30
+    income: 10.0
+    credit_score: 100
+    employment: "C"
+
+invalid_employment:
+  - id: VE-EP-01
+    description: "Invalid employment code"
+    age: 30
+    income: 10.0
+    credit_score: 400
+    employment: "X"
+
+  - id: VE-EP-02
+    description: "Lowercase employment code (case-sensitive)"
+    age: 30
+    income: 10.0
+    credit_score: 400
+    employment: "c"
+
+  - id: VE-EP-03
+    description: "Empty employment string"
+    age: 30
+    income: 10.0
+    credit_score: 400
+    employment: ""

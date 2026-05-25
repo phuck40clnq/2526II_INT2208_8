@@ -1,0 +1,116 @@
+# Decision table reduced to 5 rules.
+# R1: HIGH risk -> REJECT (any income, any employment)
+# R2: income<15, LOW, Contract -> MANUAL REVIEW
+# R3: income<15, not (LOW + Contract) -> REJECT
+# R4: income>=15, Contract -> APPROVE
+# R5: income>=15, Freelance -> MANUAL REVIEW
+
+reject_high_risk:
+  - id: D-R1-01
+    description: "R1: HIGH risk, income<15, Contract -> REJECT"
+    income: 10.0
+    risk: HIGH
+    employment: "C"
+    expected: REJECT
+
+  - id: D-R1-02
+    description: "R1: HIGH risk, income<15, Freelance -> REJECT"
+    income: 10.0
+    risk: HIGH
+    employment: "F"
+    expected: REJECT
+
+  - id: D-R1-03
+    description: "R1: HIGH risk, income>=15, Contract -> REJECT"
+    income: 20.0
+    risk: HIGH
+    employment: "C"
+    expected: REJECT
+
+  - id: D-R1-04
+    description: "R1: HIGH risk, income>=15, Freelance -> REJECT"
+    income: 20.0
+    risk: HIGH
+    employment: "F"
+    expected: REJECT
+
+manual_review_low_income:
+  - id: D-R2-01
+    description: "R2: income=14.9 (BVA max<15), LOW, Contract -> MANUAL REVIEW"
+    income: 14.9
+    risk: LOW
+    employment: "C"
+    expected: MANUAL REVIEW
+
+  - id: D-R2-02
+    description: "R2: income=5.0 (min boundary), LOW, Contract -> MANUAL REVIEW"
+    income: 5.0
+    risk: LOW
+    employment: "C"
+    expected: MANUAL REVIEW
+
+reject_low_income:
+  - id: D-R3-01
+    description: "R3: income<15, MEDIUM, Contract -> REJECT"
+    income: 10.0
+    risk: MEDIUM
+    employment: "C"
+    expected: REJECT
+
+  - id: D-R3-02
+    description: "R3: income<15, MEDIUM, Freelance -> REJECT"
+    income: 10.0
+    risk: MEDIUM
+    employment: "F"
+    expected: REJECT
+
+  - id: D-R3-03
+    description: "R3: income<15, LOW, Freelance -> REJECT"
+    income: 10.0
+    risk: LOW
+    employment: "F"
+    expected: REJECT
+
+approve:
+  - id: D-R4-01
+    description: "R4: income=15.0 (BVA min>=15), LOW, Contract -> APPROVE"
+    income: 15.0
+    risk: LOW
+    employment: "C"
+    expected: APPROVE
+
+  - id: D-R4-02
+    description: "R4: income>=15, MEDIUM, Contract -> APPROVE"
+    income: 15.0
+    risk: MEDIUM
+    employment: "C"
+    expected: APPROVE
+
+  - id: D-R4-03
+    description: "R4: income=500.0 (max boundary), LOW, Contract -> APPROVE"
+    income: 500.0
+    risk: LOW
+    employment: "C"
+    expected: APPROVE
+
+manual_review_high_income:
+  - id: D-R5-01
+    description: "R5: income=15.0 (BVA min>=15), LOW, Freelance -> MANUAL REVIEW"
+    income: 15.0
+    risk: LOW
+    employment: "F"
+    expected: MANUAL REVIEW
+
+  - id: D-R5-02
+    description: "R5: income>=15, MEDIUM, Freelance -> MANUAL REVIEW"
+    income: 20.0
+    risk: MEDIUM
+    employment: "F"
+    expected: MANUAL REVIEW
+
+  - id: D-R5-03
+    description: "R5: income=500.0 (max boundary), MEDIUM, Freelance -> MANUAL REVIEW"
+    income: 500.0
+    risk: MEDIUM
+    employment: "F"
+    expected: MANUAL REVIEW
