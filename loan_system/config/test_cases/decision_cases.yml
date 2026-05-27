@@ -1,0 +1,104 @@
+# Test cases for decision.py - evaluate_decision(income, risk, employment)
+#
+# Decision rules:
+#   HIGH risk -> REJECT
+#   income < 15:
+#     - Freelance -> REJECT
+#     - MEDIUM risk -> REJECT
+#     - Otherwise -> MANUAL REVIEW
+#   income >= 15:
+#     - Contract -> APPROVE
+#     - Otherwise -> MANUAL REVIEW
+
+
+# REJECT
+reject:
+  - id: DEC-REJ-01
+    desc: "HIGH risk -> REJECT (Contract, high income)"
+    income: 100.0
+    risk: HIGH
+    employment: C
+    expected: REJECT
+
+  - id: DEC-REJ-02
+    desc: "HIGH risk -> REJECT (Freelance)"
+    income: 50.0
+    risk: HIGH
+    employment: F
+    expected: REJECT
+
+  - id: DEC-REJ-03
+    desc: "income<15 + Freelance -> REJECT (LOW risk)"
+    income: 10.0
+    risk: LOW
+    employment: F
+    expected: REJECT
+
+  - id: DEC-REJ-04
+    desc: "income<15 + MEDIUM + Contract -> REJECT"
+    income: 10.0
+    risk: MEDIUM
+    employment: C
+    expected: REJECT
+
+  - id: DEC-REJ-05
+    desc: "income<15 + MEDIUM + Freelance -> REJECT"
+    income: 14.9
+    risk: MEDIUM
+    employment: F
+    expected: REJECT
+
+
+# MANUAL REVIEW
+manual_review:
+  - id: DEC-MR-01
+    desc: "income<15 + LOW + Contract -> MANUAL REVIEW"
+    income: 14.9
+    risk: LOW
+    employment: C
+    expected: MANUAL REVIEW
+
+  - id: DEC-MR-02
+    desc: "income<15 + LOW + Contract -> MANUAL REVIEW"
+    income: 14.99
+    risk: LOW
+    employment: C
+    expected: MANUAL REVIEW
+
+  - id: DEC-MR-03
+    desc: "income>=15 + Freelance -> MANUAL REVIEW (LOW risk)"
+    income: 15.0
+    risk: LOW
+    employment: F
+    expected: MANUAL REVIEW
+
+  - id: DEC-MR-04
+    desc: "income>=15 + Freelance -> MANUAL REVIEW (MEDIUM risk)"
+    income: 100.0
+    risk: MEDIUM
+    employment: F
+    expected: MANUAL REVIEW
+
+
+# APPROVE
+approve:
+  - id: DEC-APP-01
+    desc: "income>=15 + Contract -> APPROVE (LOW risk)"
+    income: 15.0
+    risk: LOW
+    employment: C
+    expected: APPROVE
+
+  - id: DEC-APP-02
+    desc: "income>=15 + Contract -> APPROVE (MEDIUM risk)"
+    income: 20.0
+    risk: MEDIUM
+    employment: C
+    expected: APPROVE
+
+  - id: DEC-APP-03
+    desc: "income>=15 + Contract -> APPROVE"
+    income: 500.0
+    risk: LOW
+    employment: C
+    expected: APPROVE

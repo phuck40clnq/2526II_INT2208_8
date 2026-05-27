@@ -11,10 +11,7 @@ def evaluate_decision(
     # Income < 15
     if income < 15.0:
 
-        if employment == "F":
-            return "REJECT"
-
-        if risk == "MEDIUM":
+        if employment == "F" or risk == "MEDIUM":
             return "REJECT"
 
         return "MANUAL REVIEW"
