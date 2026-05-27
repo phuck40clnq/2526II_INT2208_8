@@ -1,0 +1,73 @@
+# Test cases for risk.py - assess_risk(credit_score)
+#
+# Risk rules:
+#   300–500 -> HIGH
+#   501–700 -> MEDIUM
+#   701–850 -> LOW
+
+
+# HIGH RISK
+high_risk:
+  - id: RSK-HI-01
+    desc: "Lower boundary of HIGH range"
+    credit_score: 300
+    expected: HIGH
+
+  - id: RSK-HI-02
+    desc: "Upper boundary of HIGH range"
+    credit_score: 500
+    expected: HIGH
+
+  - id: RSK-HI-03
+    desc: "Mid HIGH range"
+    credit_score: 400
+    expected: HIGH
+
+
+# MEDIUM RISK
+medium_risk:
+  - id: RSK-MED-01
+    desc: "Lower boundary of MEDIUM range"
+    credit_score: 501
+    expected: MEDIUM
+
+  - id: RSK-MED-02
+    desc: "Upper boundary of MEDIUM range"
+    credit_score: 700
+    expected: MEDIUM
+
+  - id: RSK-MED-03
+    desc: "Mid MEDIUM range"
+    credit_score: 600
+    expected: MEDIUM
+
+
+# LOW RISK
+low_risk:
+  - id: RSK-LOW-01
+    desc: "Lower boundary of LOW range"
+    credit_score: 701
+    expected: LOW
+
+  - id: RSK-LOW-02
+    desc: "Upper boundary of LOW range"
+    credit_score: 850
+    expected: LOW
+
+  - id: RSK-LOW-03
+    desc: "Mid LOW range"
+    credit_score: 775
+    expected: LOW
+
+
+# INVALID CREDIT SCORE
+invalid_credit_score:
+  - id: RSK-INV-01
+    desc: "Credit score below valid range"
+    credit_score: 299
+    error: "outside the valid range"
+
+  - id: RSK-INV-02
+    desc: "Credit score above valid range"
+    credit_score: 851
+    error: "outside the valid range"

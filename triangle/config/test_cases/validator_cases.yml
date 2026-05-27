@@ -1,0 +1,142 @@
+# Test cases for validator.py - validate_triangle(inp)
+#
+# Validation rules:
+#   a, b, c: integer, 1–100
+
+
+# VALID
+valid:
+  - id: VAL-VAL-01
+    desc: "Typical scalene values"
+    a: 3
+    b: 4
+    c: 5
+    expected: VALID
+
+  - id: VAL-VAL-02
+    desc: "All sides at minimum boundary"
+    a: 1
+    b: 1
+    c: 1
+    expected: VALID
+
+  - id: VAL-VAL-03
+    desc: "All sides at maximum boundary"
+    a: 100
+    b: 100
+    c: 100
+    expected: VALID
+
+  - id: VAL-VAL-04
+    desc: "Mid-range values"
+    a: 50
+    b: 50
+    c: 50
+    expected: VALID
+
+  - id: VAL-VAL-05
+    desc: "Mixed boundary sides"
+    a: 1
+    b: 50
+    c: 100
+    expected: VALID
+
+
+# INVALID — SIDE A
+invalid_a:
+  - id: VAL-A-01
+    desc: "Side a just below minimum"
+    a: 0
+    b: 5
+    c: 5
+    expected: INVALID
+    error: "Side a must be in range"
+
+  - id: VAL-A-02
+    desc: "Side a just above maximum"
+    a: 101
+    b: 5
+    c: 5
+    expected: INVALID
+    error: "Side a must be in range"
+
+
+# INVALID — SIDE B
+invalid_b:
+  - id: VAL-B-01
+    desc: "Side b just below minimum"
+    a: 5
+    b: 0
+    c: 5
+    expected: INVALID
+    error: "Side b must be in range"
+
+  - id: VAL-B-02
+    desc: "Side b just above maximum"
+    a: 5
+    b: 101
+    c: 5
+    expected: INVALID
+    error: "Side b must be in range"
+
+
+# INVALID — SIDE C
+invalid_c:
+  - id: VAL-C-01
+    desc: "Side c just below minimum"
+    a: 5
+    b: 5
+    c: 0
+    expected: INVALID
+    error: "Side c must be in range"
+
+  - id: VAL-C-02
+    desc: "Side c just above maximum"
+    a: 5
+    b: 5
+    c: 101
+    expected: INVALID
+    error: "Side c must be in range"
+
+
+# INVALID — TYPE
+invalid_type:
+  - id: VAL-TYP-01
+    desc: "Side a is float"
+    a: 3.5
+    b: 4
+    c: 5
+    expected: INVALID
+    error: "Side a must be an integer"
+
+  - id: VAL-TYP-02
+    desc: "Side a is string"
+    a: "3"
+    b: 4
+    c: 5
+    expected: INVALID
+    error: "Side a must be an integer"
+
+  - id: VAL-TYP-03
+    desc: "Side a is boolean — bool is subclass of int, must be rejected"
+    a: true
+    b: 4
+    c: 5
+    expected: INVALID
+    error: "Side a must be an integer"
+
+  - id: VAL-TYP-04
+    desc: "Side b is float"
+    a: 3
+    b: 4.5
+    c: 5
+    expected: INVALID
+    error: "Side b must be an integer"
+
+  - id: VAL-TYP-05
+    desc: "Side c is float"
+    a: 3
+    b: 4
+    c: 5.5
+    expected: INVALID
+    error: "Side c must be an integer"

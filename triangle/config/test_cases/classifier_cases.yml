@@ -1,0 +1,110 @@
+# Test cases for classifier.py - classify_triangle(a, b, c)
+#
+# Classification rules:
+#   a+b <= c  OR  a+c <= b  OR  b+c <= a  -> NOT_TRIANGLE
+#   a == b == c                            -> EQUILATERAL
+#   exactly two sides equal                -> ISOSCELES
+#   all sides different                    -> SCALENE
+
+
+# NOT_TRIANGLE
+not_triangle:
+  - id: CLS-NT-01
+    desc: "a+b < c"
+    a: 1
+    b: 1
+    c: 5
+    expected: NOT_TRIANGLE
+
+  - id: CLS-NT-02
+    desc: "a+c < b"
+    a: 1
+    b: 5
+    c: 1
+    expected: NOT_TRIANGLE
+
+  - id: CLS-NT-03
+    desc: "b+c < a"
+    a: 5
+    b: 1
+    c: 1
+    expected: NOT_TRIANGLE
+
+  - id: CLS-NT-04
+    desc: "Degenerate: a+b == c (collinear, not a valid triangle)"
+    a: 1
+    b: 2
+    c: 3
+    expected: NOT_TRIANGLE
+
+
+# EQUILATERAL
+equilateral:
+  - id: CLS-EQ-01
+    desc: "Minimum boundary — all sides 1"
+    a: 1
+    b: 1
+    c: 1
+    expected: EQUILATERAL
+
+  - id: CLS-EQ-02
+    desc: "Mid-range equilateral"
+    a: 50
+    b: 50
+    c: 50
+    expected: EQUILATERAL
+
+  - id: CLS-EQ-03
+    desc: "Maximum boundary — all sides 100"
+    a: 100
+    b: 100
+    c: 100
+    expected: EQUILATERAL
+
+
+# ISOSCELES
+isosceles:
+  - id: CLS-IS-01
+    desc: "a == b, c differs"
+    a: 5
+    b: 5
+    c: 3
+    expected: ISOSCELES
+
+  - id: CLS-IS-02
+    desc: "a == c, b differs"
+    a: 5
+    b: 3
+    c: 5
+    expected: ISOSCELES
+
+  - id: CLS-IS-03
+    desc: "b == c, a differs"
+    a: 3
+    b: 5
+    c: 5
+    expected: ISOSCELES
+
+
+# SCALENE
+scalene:
+  - id: CLS-SC-01
+    desc: "Classic 3-4-5 right triangle"
+    a: 3
+    b: 4
+    c: 5
+    expected: SCALENE
+
+  - id: CLS-SC-02
+    desc: "Typical scalene"
+    a: 5
+    b: 6
+    c: 7
+    expected: SCALENE
+
+  - id: CLS-SC-03
+    desc: "Large scalene"
+    a: 10
+    b: 11
+    c: 12
+    expected: SCALENE

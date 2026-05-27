@@ -1,0 +1,104 @@
+# Integration test cases - end-to-end flow: validate -> classify
+
+
+# INVALID INPUT — validation should raise before classification
+invalid_input:
+  - id: INT-INV-01
+    desc: "Side a below minimum"
+    a: 0
+    b: 5
+    c: 5
+    expected: INVALID
+    error: "Side a must be in range"
+
+  - id: INT-INV-02
+    desc: "Side b above maximum"
+    a: 5
+    b: 101
+    c: 5
+    expected: INVALID
+    error: "Side b must be in range"
+
+  - id: INT-INV-03
+    desc: "Side c above maximum"
+    a: 5
+    b: 5
+    c: 101
+    expected: INVALID
+    error: "Side c must be in range"
+
+  - id: INT-INV-04
+    desc: "Side a is wrong type (string)"
+    a: "3"
+    b: 4
+    c: 5
+    expected: INVALID
+    error: "Side a must be an integer"
+
+
+# NOT_TRIANGLE
+not_triangle:
+  - id: INT-NT-01
+    desc: "a+b <= c"
+    a: 1
+    b: 1
+    c: 3
+    expected: NOT_TRIANGLE
+
+  - id: INT-NT-02
+    desc: "b+c <= a"
+    a: 10
+    b: 1
+    c: 1
+    expected: NOT_TRIANGLE
+
+
+# EQUILATERAL
+equilateral:
+  - id: INT-EQ-01
+    desc: "All equal, mid-range"
+    a: 5
+    b: 5
+    c: 5
+    expected: EQUILATERAL
+
+  - id: INT-EQ-02
+    desc: "All at minimum boundary"
+    a: 1
+    b: 1
+    c: 1
+    expected: EQUILATERAL
+
+
+# ISOSCELES
+isosceles:
+  - id: INT-IS-01
+    desc: "a == b, valid triangle"
+    a: 5
+    b: 5
+    c: 3
+    expected: ISOSCELES
+
+  - id: INT-IS-02
+    desc: "b == c, valid triangle"
+    a: 3
+    b: 5
+    c: 5
+    expected: ISOSCELES
+
+
+# SCALENE
+scalene:
+  - id: INT-SC-01
+    desc: "3-4-5 right triangle"
+    a: 3
+    b: 4
+    c: 5
+    expected: SCALENE
+
+  - id: INT-SC-02
+    desc: "Large scalene"
+    a: 10
+    b: 11
+    c: 12
+    expected: SCALENE

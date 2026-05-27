@@ -1,0 +1,227 @@
+# Test cases for validator.py - validate_application(app)
+#
+# Validation rules:
+#   age:          integer, 18–65
+#   income:       float,   5.0–500.0
+#   credit_score: integer, 300–850
+#   employment:   "C" or "F"  (case-sensitive)
+
+
+# VALID
+valid:
+  - id: VAL-VAL-01
+    desc: "Typical mid-range values"
+    age: 30
+    income: 50.0
+    credit_score: 700
+    employment: C
+    expected: VALID
+
+  - id: VAL-VAL-02
+    desc: "All fields at minimum boundary"
+    age: 18
+    income: 5.0
+    credit_score: 300
+    employment: C
+    expected: VALID
+
+  - id: VAL-VAL-03
+    desc: "All fields at maximum boundary"
+    age: 65
+    income: 500.0
+    credit_score: 850
+    employment: F
+    expected: VALID
+
+  - id: VAL-VAL-04
+    desc: "Income at interior split boundary"
+    age: 30
+    income: 15.0
+    credit_score: 600
+    employment: C
+    expected: VALID
+
+  - id: VAL-VAL-05
+    desc: "Mid-range values, employment F"
+    age: 40
+    income: 100.0
+    credit_score: 600
+    employment: F
+    expected: VALID
+
+
+# INVALID — AGE
+invalid_age:
+  - id: VAL-AGE-01
+    desc: "Age just below minimum"
+    age: 17
+    income: 20.0
+    credit_score: 700
+    employment: C
+    expected: INVALID
+    error: "Invalid age"
+
+  - id: VAL-AGE-02
+    desc: "Age just above maximum"
+    age: 66
+    income: 20.0
+    credit_score: 700
+    employment: C
+    expected: INVALID
+    error: "Invalid age"
+
+  - id: VAL-AGE-03
+    desc: "Age well below range"
+    age: 0
+    income: 20.0
+    credit_score: 700
+    employment: C
+    expected: INVALID
+    error: "Invalid age"
+
+
+# INVALID — INCOME
+invalid_income:
+  - id: VAL-INC-01
+    desc: "Income just below minimum"
+    age: 30
+    income: 4.9
+    credit_score: 700
+    employment: C
+    expected: INVALID
+    error: "Invalid income"
+
+  - id: VAL-INC-02
+    desc: "Income just above maximum"
+    age: 30
+    income: 500.1
+    credit_score: 700
+    employment: C
+    expected: INVALID
+    error: "Invalid income"
+
+  - id: VAL-INC-03
+    desc: "Income well below range"
+    age: 30
+    income: 0.0
+    credit_score: 700
+    employment: C
+    expected: INVALID
+    error: "Invalid income"
+
+
+# INVALID — CREDIT SCORE
+invalid_credit_score:
+  - id: VAL-CRD-01
+    desc: "Credit score just below minimum"
+    age: 30
+    income: 20.0
+    credit_score: 299
+    employment: C
+    expected: INVALID
+    error: "Invalid credit score"
+
+  - id: VAL-CRD-02
+    desc: "Credit score just above maximum"
+    age: 30
+    income: 20.0
+    credit_score: 851
+    employment: C
+    expected: INVALID
+    error: "Invalid credit score"
+
+  - id: VAL-CRD-03
+    desc: "Credit score well below range"
+    age: 30
+    income: 20.0
+    credit_score: 100
+    employment: C
+    expected: INVALID
+    error: "Invalid credit score"
+
+
+# INVALID — EMPLOYMENT
+invalid_employment:
+  - id: VAL-EMP-01
+    desc: "Invalid employment code"
+    age: 30
+    income: 20.0
+    credit_score: 700
+    employment: X
+    expected: INVALID
+    error: "Invalid employment"
+
+  - id: VAL-EMP-02
+    desc: "Lowercase employment code — case-sensitive check"
+    age: 30
+    income: 20.0
+    credit_score: 700
+    employment: c
+    expected: INVALID
+    error: "Invalid employment"
+
+  - id: VAL-EMP-03
+    desc: "Empty employment string"
+    age: 30
+    income: 20.0
+    credit_score: 700
+    employment: ""
+    expected: INVALID
+    error: "Invalid employment"
+
+
+# INVALID - TYPE
+invalid_type:
+  - id: VAL-TYP-01
+    desc: "Age is float instead of integer"
+    age: 25.5
+    income: 20.0
+    credit_score: 700
+    employment: C
+    expected: INVALID
+    error: "Age must be integer"
+
+  - id: VAL-TYP-02
+    desc: "Age is string instead of integer"
+    age: "25"
+    income: 20.0
+    credit_score: 700
+    employment: C
+    expected: INVALID
+    error: "Age must be integer"
+
+  - id: VAL-TYP-03
+    desc: "Credit score is float instead of integer"
+    age: 30
+    income: 20.0
+    credit_score: 700.5
+    employment: C
+    expected: INVALID
+    error: "Credit score must be integer"
+
+  - id: VAL-TYP-04
+    desc: "Credit score is string instead of integer"
+    age: 30
+    income: 20.0
+    credit_score: "700"
+    employment: C
+    expected: INVALID
+    error: "Credit score must be integer"
+
+  - id: VAL-TYP-05
+    desc: "Income is a string instead of a number"
+    age: 30
+    income: "50.0"
+    credit_score: 700
+    employment: C
+    expected: INVALID
+    error: "Income must be a number"
+
+  - id: VAL-TYP-06
+    desc: "Income is a boolean instead of a number"
+    age: 30
+    income: true
+    credit_score: 700
+    employment: C
+    expected: INVALID
+    error: "Income must be a number"
