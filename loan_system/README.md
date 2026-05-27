@@ -157,7 +157,7 @@ Test data is in YAML files under `config/test_cases/`. Each file groups cases by
 | `test_decision.py` | All six rows of the decision table |
 | `test_service.py` | End-to-end: invalid input, all three decision outcomes |
 
-**Coverage:** 97.83 % (59 tests)
+**Coverage:** 100.00% (61 tests)
 
 ---
 
